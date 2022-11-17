@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mentalhealthapp/utils/emoji.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -110,12 +111,75 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
 
-              const SizedBox(height: 10),
+              const SizedBox(height: 25),
 
+              //Emojis
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(),
+                  //Badly
+                  Column(
+                    children: [
+                      EmojiFace(emoji: '😔'),
+                      const SizedBox(height: 15),
+                      const Text(
+                        'Badly',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  //Fine
+                  Column(
+                    children: [
+                      EmojiFace(emoji: '😊'),
+                      const SizedBox(height: 15),
+                      const Text(
+                        'Fine',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  //Well
+                  Column(
+                    children: [
+                      EmojiFace(emoji: '😁'),
+                      const SizedBox(height: 15),
+                      const Text(
+                        'Well',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  //Excellent
+                  Column(
+                    children: [
+                      EmojiFace(emoji: '😃'),
+                      const SizedBox(height: 15),
+                      const Text(
+                        'Excellent',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               )
             ],
