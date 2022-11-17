@@ -13,13 +13,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.blue,
       body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-
-              //Ola Bar
-              child: Row(
+        child: Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: Column(
+            //crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   //Hi jaret!
@@ -38,7 +37,8 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         '17 nov, 2022',
                         style: TextStyle(
-                          color: Colors.blue[100],
+                          color: Colors.blue[200],
+                          fontWeight: FontWeight.bold,
                         ),
                       )
                     ],
@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.blue[300],
                         borderRadius: BorderRadius.circular(12)),
                     padding: const EdgeInsets.all(12),
-                    child: Icon(
+                    child: const Icon(
                       Icons.notifications,
                       color: Colors.white,
                     ),
@@ -58,9 +58,68 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
 
+              const SizedBox(height: 35),
+
               //Search Bar
-            )
-          ],
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.blue[300],
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                padding: const EdgeInsets.all(15),
+                child: Row(
+                  children: const [
+                    Icon(
+                      Icons.search_rounded,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'Search',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              //Como te sentes
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'How do you feel?',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '..',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 30,
+                      letterSpacing: 1,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 10),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
