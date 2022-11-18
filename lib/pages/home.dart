@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mentalhealthapp/utils/emoji.dart';
+import 'package:mentalhealthapp/utils/skills_box.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -246,62 +247,23 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
 
-                      //Speaking Skills
                       const SizedBox(height: 15),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                        child: Column(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(12),
-                              decoration: BoxDecoration(
-                                color: Colors.grey[100],
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    padding: const EdgeInsets.all(15),
-                                    decoration: BoxDecoration(
-                                        color: Colors.amber[800],
-                                        borderRadius:
-                                            BorderRadius.circular(20)),
-                                    child: const Icon(
-                                      Icons.favorite,
-                                      color: Colors.white,
-                                      size: 30,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 15),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Speaking Skills',
-                                        style: TextStyle(
-                                          color: Colors.grey[900],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 5),
-                                      Text(
-                                        '16 Excercises',
-                                        style: TextStyle(
-                                          color: Colors.grey[600],
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 12,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
+
+                      //Speaking Skills
+                      SkillBox(
+                          icon: Icons.favorite,
+                          iconColor: Colors.amber.shade900,
+                          boxTitle: 'Speaking Skills',
+                          execercisoNum: 16),
+
+                      const SizedBox(height: 15),
+
+                      //Reading Skills
+                      SkillBox(
+                          icon: Icons.person,
+                          iconColor: Colors.blue.shade800,
+                          boxTitle: 'Reading Skills',
+                          execercisoNum: 8),
                     ],
                   ),
                 ),
