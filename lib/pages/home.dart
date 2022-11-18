@@ -24,14 +24,14 @@ class _HomePageState extends State<HomePage> {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.home,
+            Icons.message,
             color: Colors.grey,
           ),
           label: '',
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.home,
+            Icons.person,
             color: Colors.grey,
           ),
           label: '',
@@ -246,24 +246,36 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
+                      Expanded(
+                        child: ListView(
+                          children: [
+                            const SizedBox(height: 15),
 
-                      const SizedBox(height: 15),
+                            //Speaking Skills
+                            SkillBox(
+                                icon: Icons.favorite,
+                                iconColor: Colors.amber.shade900,
+                                boxTitle: 'Speaking Skills',
+                                execercisoNum: 16),
 
-                      //Speaking Skills
-                      SkillBox(
-                          icon: Icons.favorite,
-                          iconColor: Colors.amber.shade900,
-                          boxTitle: 'Speaking Skills',
-                          execercisoNum: 16),
+                            const SizedBox(height: 15),
 
-                      const SizedBox(height: 15),
+                            //Reading Skills
+                            SkillBox(
+                                icon: Icons.person,
+                                iconColor: Colors.blue.shade800,
+                                boxTitle: 'Reading Skills',
+                                execercisoNum: 8),
 
-                      //Reading Skills
-                      SkillBox(
-                          icon: Icons.person,
-                          iconColor: Colors.blue.shade800,
-                          boxTitle: 'Reading Skills',
-                          execercisoNum: 8),
+                            //Listening Skills
+                            SkillBox(
+                                icon: Icons.record_voice_over,
+                                iconColor: Colors.pink.shade800,
+                                boxTitle: 'Listening Skills',
+                                execercisoNum: 12),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
