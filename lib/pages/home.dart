@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mentalhealthapp/pages/searchbar.dart';
 import 'package:mentalhealthapp/utils/emoji.dart';
 import 'package:mentalhealthapp/utils/skills_box.dart';
 
@@ -87,28 +88,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(height: 35),
 
                   //Search Bar
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.blue[300],
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    padding: const EdgeInsets.all(15),
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.search_rounded,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          'Search',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  const SearchBar(),
 
                   const SizedBox(height: 30),
 

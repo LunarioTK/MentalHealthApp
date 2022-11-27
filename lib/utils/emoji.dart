@@ -8,7 +8,9 @@ class EmojiFace extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.blue[300], borderRadius: BorderRadius.circular(18)),
+        color: Colors.blue[300],
+        borderRadius: BorderRadius.circular(18),
+      ),
       padding: const EdgeInsets.fromLTRB(15, 18, 15, 18),
       child: Text(
         emoji,
