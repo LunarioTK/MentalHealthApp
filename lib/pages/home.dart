@@ -84,106 +84,115 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 35),
-
-                  //Search Bar
-                  const SearchBar(),
-
-                  const SizedBox(height: 30),
-
-                  //Como te sentes
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'How do you feel?',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        '..',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          letterSpacing: 1,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 25),
-
-                  //Emojis
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Stack(
                     children: [
-                      //Badly
-                      Column(
-                        children: const [
-                          EmojiFace(emoji: '😔'),
-                          SizedBox(height: 15),
-                          Text(
-                            'Badly',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                      //Emojis
+                      Align(
+                        heightFactor: 2.4,
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          //crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            //Badly
+                            Column(
+                              children: const [
+                                EmojiFace(emoji: '😔'),
+                                SizedBox(height: 15),
+                                Text(
+                                  'Badly',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ],
+
+                            //Fine
+                            Column(
+                              children: const [
+                                EmojiFace(emoji: '😊'),
+                                SizedBox(height: 15),
+                                Text(
+                                  'Fine',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            //Well
+                            Column(
+                              children: const [
+                                EmojiFace(emoji: '😁'),
+                                SizedBox(height: 15),
+                                Text(
+                                  'Well',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            //Excellent
+                            Column(
+                              children: const [
+                                EmojiFace(emoji: '😃'),
+                                SizedBox(height: 15),
+                                Text(
+                                  'Excellent',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
 
-                      //Fine
-                      Column(
-                        children: const [
-                          EmojiFace(emoji: '😊'),
-                          SizedBox(height: 15),
-                          Text(
-                            'Fine',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
+                      //Como te sentes
+                      Align(
+                        heightFactor: 6.5,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text(
+                              'How do you feel?',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ],
+                            Text(
+                              '..',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                letterSpacing: 1,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
 
-                      //Well
-                      Column(
-                        children: const [
-                          EmojiFace(emoji: '😁'),
-                          SizedBox(height: 15),
-                          Text(
-                            'Well',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      //Excellent
-                      Column(
-                        children: const [
-                          EmojiFace(emoji: '😃'),
-                          SizedBox(height: 15),
-                          Text(
-                            'Excellent',
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
+                      //Search Bar
+                      const Align(
+                        alignment: Alignment.topCenter,
+                        child: SearchBar(),
                       ),
                     ],
                   ),

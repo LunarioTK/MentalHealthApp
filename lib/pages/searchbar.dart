@@ -25,12 +25,6 @@ class _SearchBarState extends State<SearchBar> {
 
   void findMatch() {
     setState(() {
-      /*for (var terms in searchTerms) {
-        if (terms.toLowerCase().contains(controller.text.toLowerCase())) {
-          matchQuery.add(terms);
-        }
-      }*/
-
       //Comparação entre a lista e o que escrevo na caixa
       matchQuery = searchTerms
           .where((element) =>
@@ -48,7 +42,7 @@ class _SearchBarState extends State<SearchBar> {
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             color: Colors.blue[300],
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(12),
           ),
           child: TextField(
             onChanged: (value) {
@@ -87,53 +81,59 @@ class _SearchBarState extends State<SearchBar> {
         ),
 
         //Mostrar a pesquisa
-        controller.text.isEmpty
-            ? Container()
-            : Expanded(
-                child: AnimatedOpacity(
-                  opacity: _visible ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 400),
-                  child: searchTerms.isEmpty
-                      ? Center(
-                          child: Text(
-                            'No results found',
-                            style: TextStyle(
-                                color: Colors.grey[600],
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      : Container(
-                          margin: const EdgeInsets.fromLTRB(25, 5, 25, 50),
-                          decoration: BoxDecoration(
-                            color: Colors.blue[300],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: ListView.builder(
-                            itemCount: matchQuery.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                contentPadding:
-                                    const EdgeInsets.fromLTRB(35, 0, 15, 0),
-                                onTap: () {
-                                  setState(() {
-                                    controller.text = matchQuery[index];
-                                    matchQuery = [];
-                                  });
-                                },
-                                title: Text(
-                                  matchQuery[index],
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 15,
+        Stack(
+          clipBehavior: Clip.none,
+          children: [
+            controller.text.isEmpty
+                ? Container()
+                : AnimatedOpacity(
+                    opacity: _visible ? 1.0 : 0.0,
+                    duration: const Duration(milliseconds: 400),
+                    child: searchTerms.isEmpty
+                        ? Center(
+                            child: Text(
+                              'No results found',
+                              style: TextStyle(
+                                  color: Colors.grey[600],
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          )
+                        : Container(
+                            constraints: const BoxConstraints.tightForFinite(
+                              height: 200,
+                            ),
+                            margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                            decoration: BoxDecoration(
+                              color: Colors.blue[300],
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: ListView.builder(
+                              itemCount: matchQuery.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(35, 0, 15, 0),
+                                  onTap: () {
+                                    setState(() {
+                                      controller.text = matchQuery[index];
+                                      matchQuery = [];
+                                    });
+                                  },
+                                  title: Text(
+                                    matchQuery[index],
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                    ),
                                   ),
-                                ),
-                              );
-                            },
+                                );
+                              },
+                            ),
                           ),
-                        ),
-                ),
-              )
+                  ),
+          ],
+        ),
       ],
     );
   }
