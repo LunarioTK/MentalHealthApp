@@ -117,7 +117,9 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    showPopup(0);
+                                    setState(() {
+                                      showPopup(0);
+                                    });
                                   },
                                   child: EmojiFace(emoji: emojis[0]),
                                 ),
@@ -138,7 +140,9 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    showPopup(1);
+                                    setState(() {
+                                      showPopup(1);
+                                    });
                                   },
                                   child: EmojiFace(
                                     emoji: emojis[1],
@@ -161,7 +165,9 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    showPopup(2);
+                                    setState(() {
+                                      showPopup(2);
+                                    });
                                   },
                                   child: EmojiFace(
                                     emoji: emojis[2],
@@ -184,7 +190,9 @@ class _HomePageState extends State<HomePage> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    showPopup(3);
+                                    setState(() {
+                                      showPopup(3);
+                                    });
                                   },
                                   child: EmojiFace(
                                     emoji: emojis[3],
