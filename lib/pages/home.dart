@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       //Emojis
                       Align(
-                        heightFactor: 2.2,
+                        heightFactor: 2.3,
                         alignment: Alignment.bottomCenter,
                         child: Row(
                           //crossAxisAlignment: CrossAxisAlignment.end,
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                                   },
                                   child: EmojiFace(emoji: emojis[0]),
                                 ),
-                                const SizedBox(height: 15),
+                                const SizedBox(height: 10),
                                 const Text(
                                   'Badly',
                                   style: TextStyle(
@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                                     emoji: emojis[1],
                                   ),
                                 ),
-                                const SizedBox(height: 15),
+                                const SizedBox(height: 10),
                                 const Text(
                                   'Fine',
                                   style: TextStyle(
@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                                     emoji: emojis[2],
                                   ),
                                 ),
-                                const SizedBox(height: 15),
+                                const SizedBox(height: 10),
                                 const Text(
                                   'Well',
                                   style: TextStyle(
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                                     emoji: emojis[3],
                                   ),
                                 ),
-                                const SizedBox(height: 15),
+                                const SizedBox(height: 10),
                                 const Text(
                                   'Excellent',
                                   style: TextStyle(
