@@ -13,14 +13,11 @@ class _SearchBarState extends State<SearchBar> {
   List<String> matchQuery = [];
   //Lista de sugestões de pesquisa
   List<String> searchTerms = [
-    "Apple",
-    "Banana",
-    "Mango",
-    "Pear",
-    "Watermelons",
-    "Blueberries",
-    "Pineapples",
-    "Strawberries"
+    "Psicologo",
+    "Psiquiatra",
+    "Depressão",
+    "Bipolaridade",
+    "Distúrbios alimentares",
   ];
 
   void findMatch() {
@@ -81,59 +78,54 @@ class _SearchBarState extends State<SearchBar> {
         ),
 
         //Mostrar a pesquisa
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            controller.text.isEmpty
-                ? Container()
-                : AnimatedOpacity(
-                    opacity: _visible ? 1.0 : 0.0,
-                    duration: const Duration(milliseconds: 400),
-                    child: searchTerms.isEmpty
-                        ? Center(
-                            child: Text(
-                              'No results found',
-                              style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontSize: 22.0,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        : Container(
-                            constraints: const BoxConstraints.tightForFinite(
-                              height: 200,
-                            ),
-                            margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                            decoration: BoxDecoration(
-                              color: Colors.blue[300],
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: ListView.builder(
-                              itemCount: matchQuery.length,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(35, 0, 15, 0),
-                                  onTap: () {
-                                    setState(() {
-                                      controller.text = matchQuery[index];
-                                      matchQuery = [];
-                                    });
-                                  },
-                                  title: Text(
-                                    matchQuery[index],
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                    ),
-                                  ),
-                                );
+        controller.text.isEmpty
+            ? Container()
+            : AnimatedOpacity(
+                opacity: _visible ? 1.0 : 0.0,
+                duration: const Duration(milliseconds: 400),
+                child: searchTerms.isEmpty
+                    ? Center(
+                        child: Text(
+                          'No results found',
+                          style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    : Container(
+                        constraints: const BoxConstraints.tightForFinite(
+                          height: 200,
+                        ),
+                        margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                        decoration: BoxDecoration(
+                          color: Colors.blue[300],
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: ListView.builder(
+                          itemCount: matchQuery.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              contentPadding:
+                                  const EdgeInsets.fromLTRB(35, 0, 15, 0),
+                              onTap: () {
+                                setState(() {
+                                  controller.text = matchQuery[index];
+                                  matchQuery = [];
+                                });
                               },
-                            ),
-                          ),
-                  ),
-          ],
-        ),
+                              title: Text(
+                                matchQuery[index],
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+              ),
       ],
     );
   }

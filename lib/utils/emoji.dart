@@ -9,9 +9,9 @@ class EmojiFace extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.blue[300],
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(15),
       ),
-      padding: const EdgeInsets.fromLTRB(15, 18, 15, 18),
+      padding: const EdgeInsets.all(12),
       child: Text(
         emoji,
         style: const TextStyle(

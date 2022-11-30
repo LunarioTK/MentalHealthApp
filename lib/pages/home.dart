@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mentalhealthapp/pages/searchbar.dart';
 import 'package:mentalhealthapp/utils/emoji.dart';
+import 'package:mentalhealthapp/utils/emojipopup.dart';
 import 'package:mentalhealthapp/utils/skills_box.dart';
 
 class HomePage extends StatefulWidget {
@@ -11,6 +12,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> emojis = [
+    '😔',
+    '😊',
+    '😁',
+    '😃',
+  ];
+  void showPopup(int pos) {
+    showDialog(
+        context: context,
+        builder: ((context) {
+          return PopUpEmoji(
+            emoji: emojis[pos],
+          );
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       //Emojis
                       Align(
-                        heightFactor: 2.4,
+                        heightFactor: 2.2,
                         alignment: Alignment.bottomCenter,
                         child: Row(
                           //crossAxisAlignment: CrossAxisAlignment.end,
@@ -97,10 +114,15 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             //Badly
                             Column(
-                              children: const [
-                                EmojiFace(emoji: '😔'),
-                                SizedBox(height: 15),
-                                Text(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    showPopup(0);
+                                  },
+                                  child: EmojiFace(emoji: emojis[0]),
+                                ),
+                                const SizedBox(height: 15),
+                                const Text(
                                   'Badly',
                                   style: TextStyle(
                                     fontSize: 16,
@@ -113,10 +135,17 @@ class _HomePageState extends State<HomePage> {
 
                             //Fine
                             Column(
-                              children: const [
-                                EmojiFace(emoji: '😊'),
-                                SizedBox(height: 15),
-                                Text(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    showPopup(1);
+                                  },
+                                  child: EmojiFace(
+                                    emoji: emojis[1],
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                const Text(
                                   'Fine',
                                   style: TextStyle(
                                     fontSize: 16,
@@ -129,10 +158,17 @@ class _HomePageState extends State<HomePage> {
 
                             //Well
                             Column(
-                              children: const [
-                                EmojiFace(emoji: '😁'),
-                                SizedBox(height: 15),
-                                Text(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    showPopup(2);
+                                  },
+                                  child: EmojiFace(
+                                    emoji: emojis[2],
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                const Text(
                                   'Well',
                                   style: TextStyle(
                                     fontSize: 16,
@@ -145,10 +181,17 @@ class _HomePageState extends State<HomePage> {
 
                             //Excellent
                             Column(
-                              children: const [
-                                EmojiFace(emoji: '😃'),
-                                SizedBox(height: 15),
-                                Text(
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    showPopup(3);
+                                  },
+                                  child: EmojiFace(
+                                    emoji: emojis[3],
+                                  ),
+                                ),
+                                const SizedBox(height: 15),
+                                const Text(
                                   'Excellent',
                                   style: TextStyle(
                                     fontSize: 16,
