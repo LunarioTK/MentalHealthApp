@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class SearchBar extends StatefulWidget {
-  const SearchBar({super.key});
+  final PanelController panelController;
+  const SearchBar({super.key, required this.panelController});
 
   @override
   State<SearchBar> createState() => _SearchBarState();
@@ -10,6 +13,7 @@ class SearchBar extends StatefulWidget {
 class _SearchBarState extends State<SearchBar> {
   late final controller = TextEditingController();
   bool _visible = false;
+  bool keyOpen = false;
   List<String> matchQuery = [];
   //Lista de sugestões de pesquisa
   List<String> searchTerms = [
@@ -23,15 +27,24 @@ class _SearchBarState extends State<SearchBar> {
   void findMatch() {
     setState(() {
       //Comparação entre a lista e o que escrevo na caixa
-      matchQuery = searchTerms
+      /*matchQuery = searchTerms
           .where((element) =>
               element.toLowerCase().contains(controller.text.toLowerCase()))
-          .toList();
+          .toList();*/
+      for (var terms in searchTerms) {
+        if (terms.toLowerCase().contains(controller.text.toLowerCase())) {
+          matchQuery = searchTerms
+              .where((terms) =>
+                  terms.toLowerCase().contains(controller.text.toLowerCase()))
+              .toList();
+        }
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return Column(
       children: [
         //Criação da caixa de pesquisa
@@ -44,8 +57,8 @@ class _SearchBarState extends State<SearchBar> {
           child: TextField(
             onChanged: (value) {
               setState(() {
-                findMatch();
                 _visible = !_visible;
+                findMatch();
               });
             },
             controller: controller,
@@ -79,53 +92,42 @@ class _SearchBarState extends State<SearchBar> {
 
         //Mostrar a pesquisa
         controller.text.isEmpty
-            ? Container()
-            : AnimatedOpacity(
-                opacity: _visible ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 400),
-                child: searchTerms.isEmpty
-                    ? Center(
-                        child: Text(
-                          'No results found',
-                          style: TextStyle(
-                              color: Colors.grey[600],
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    : Container(
-                        constraints: const BoxConstraints.tightForFinite(
-                          height: 200,
-                        ),
-                        margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                        decoration: BoxDecoration(
-                          color: Colors.blue[300],
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: ListView.builder(
-                          itemCount: matchQuery.length,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              contentPadding:
-                                  const EdgeInsets.fromLTRB(35, 0, 15, 0),
-                              onTap: () {
-                                setState(() {
-                                  controller.text = matchQuery[index];
-                                  matchQuery = [];
-                                });
-                              },
-                              title: Text(
-                                matchQuery[index],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            );
+            ? const SizedBox()
+            : matchQuery.isEmpty
+                ? const SizedBox()
+                : Container(
+                    constraints: const BoxConstraints.tightForFinite(
+                      height: 180,
+                    ),
+                    margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    decoration: BoxDecoration(
+                      color: Colors.blue[300],
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: ListView.builder(
+                      itemCount: matchQuery.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(35, 0, 15, 0),
+                          onTap: () {
+                            setState(() {
+                              controller.text = matchQuery[index];
+                              FocusManager.instance.primaryFocus?.unfocus();
+                              matchQuery = [];
+                            });
                           },
-                        ),
-                      ),
-              ),
+                          title: Text(
+                            matchQuery[index],
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
       ],
     );
   }

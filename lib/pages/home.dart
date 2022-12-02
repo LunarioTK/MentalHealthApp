@@ -3,7 +3,6 @@ import 'package:mentalhealthapp/pages/searchbar.dart';
 import 'package:mentalhealthapp/utils/emoji.dart';
 import 'package:mentalhealthapp/utils/emojipopup.dart';
 import 'package:mentalhealthapp/utils/panelwidget.dart';
-import 'package:mentalhealthapp/utils/skills_box.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class HomePage extends StatefulWidget {
@@ -37,6 +36,7 @@ class _HomePageState extends State<HomePage> {
     final panelHeightOpen = MediaQuery.of(context).size.height * 0.65;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.blue,
       bottomNavigationBar: BottomNavigationBar(items: const [
         BottomNavigationBarItem(
@@ -257,9 +257,11 @@ class _HomePageState extends State<HomePage> {
                         ),
 
                         //Search Bar
-                        const Align(
+                        Align(
                           alignment: Alignment.topCenter,
-                          child: SearchBar(),
+                          child: SearchBar(
+                            panelController: panelController,
+                          ),
                         ),
                       ],
                     ),
