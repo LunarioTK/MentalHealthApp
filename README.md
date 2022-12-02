@@ -3,7 +3,7 @@
 App test from dribble. Stil learning.
 Second app upload.
 
-Didn't do everything that was shown on the dribble illustration, but the basics are working.
+I haven't done everything shown in the dribbling illustration, but the basics are working.
 
 
 ## Link
