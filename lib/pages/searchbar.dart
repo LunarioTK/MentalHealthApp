@@ -44,7 +44,6 @@ class _SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    final isKeyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return Column(
       children: [
         //Criação da caixa de pesquisa
