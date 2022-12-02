@@ -15,13 +15,16 @@ class SkillBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            margin: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Colors.grey[100],
+              border: Border.all(
+                color: Colors.grey.shade300,
+              ),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -58,7 +61,7 @@ class SkillBox extends StatelessWidget {
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          execercisoNum.toString() + ' Excercises',
+                          '$execercisoNum Excercises',
                           style: TextStyle(
                             color: Colors.grey[600],
                             fontWeight: FontWeight.bold,

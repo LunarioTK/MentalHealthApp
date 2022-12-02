@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:mentalhealthapp/pages/searchbar.dart';
 import 'package:mentalhealthapp/utils/emoji.dart';
 import 'package:mentalhealthapp/utils/emojipopup.dart';
+import 'package:mentalhealthapp/utils/panelwidget.dart';
 import 'package:mentalhealthapp/utils/skills_box.dart';
+import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final panelController = PanelController();
   List<String> emojis = [
     '😔',
     '😊',
@@ -30,6 +33,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final panelHeightClosed = MediaQuery.of(context).size.height * 0.4;
+    final panelHeightOpen = MediaQuery.of(context).size.height * 0.65;
+
     return Scaffold(
       backgroundColor: Colors.blue,
       bottomNavigationBar: BottomNavigationBar(items: const [
@@ -55,273 +61,213 @@ class _HomePageState extends State<HomePage> {
           label: '',
         ),
       ]),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(25.0),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      //Hi jaret!
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Hi, Jaret!',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+      body: SlidingUpPanel(
+        minHeight: panelHeightClosed,
+        maxHeight: panelHeightOpen,
+        controller: panelController,
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+        panelBuilder: (controller) => PanelWidget(
+          panelController: panelController,
+          controller: controller,
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(25.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        //Hi jaret!
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Hi, Jaret!',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            '17 nov, 2022',
-                            style: TextStyle(
-                              color: Colors.blue[200],
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
-                      ),
+                            const SizedBox(height: 8),
+                            Text(
+                              '17 nov, 2022',
+                              style: TextStyle(
+                                color: Colors.blue[200],
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          ],
+                        ),
 
-                      //Notificarções
-                      Container(
-                        decoration: BoxDecoration(
+                        //Notificarções
+                        Container(
+                          decoration: BoxDecoration(
                             color: Colors.blue[300],
-                            borderRadius: BorderRadius.circular(12)),
-                        padding: const EdgeInsets.all(12),
-                        child: const Icon(
-                          Icons.notifications,
-                          color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          child: const Icon(
+                            Icons.notifications,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 35),
-                  Stack(
-                    children: [
-                      //Emojis
-                      Align(
-                        heightFactor: 2.3,
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          //crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            //Badly
-                            Column(
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      showPopup(0);
-                                    });
-                                  },
-                                  child: EmojiFace(emoji: emojis[0]),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  'Badly',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
+                      ],
+                    ),
+                    const SizedBox(height: 35),
+                    Stack(
+                      children: [
+                        //Emojis
+                        Align(
+                          heightFactor: 2.3,
+                          alignment: Alignment.bottomCenter,
+                          child: Row(
+                            //crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              //Badly
+                              Column(
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        showPopup(0);
+                                      });
+                                    },
+                                    child: EmojiFace(emoji: emojis[0]),
                                   ),
-                                ),
-                              ],
-                            ),
-
-                            //Fine
-                            Column(
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      showPopup(1);
-                                    });
-                                  },
-                                  child: EmojiFace(
-                                    emoji: emojis[1],
+                                  const SizedBox(height: 10),
+                                  const Text(
+                                    'Badly',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  'Fine',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            //Well
-                            Column(
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      showPopup(2);
-                                    });
-                                  },
-                                  child: EmojiFace(
-                                    emoji: emojis[2],
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  'Well',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-
-                            //Excellent
-                            Column(
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      showPopup(3);
-                                    });
-                                  },
-                                  child: EmojiFace(
-                                    emoji: emojis[3],
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  'Excellent',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-
-                      //Como te sentes
-                      Align(
-                        heightFactor: 6.5,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text(
-                              'How do you feel?',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                                ],
                               ),
-                            ),
-                            Text(
-                              '..',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30,
-                                letterSpacing: 1,
-                                fontWeight: FontWeight.bold,
+
+                              //Fine
+                              Column(
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        showPopup(1);
+                                      });
+                                    },
+                                    child: EmojiFace(
+                                      emoji: emojis[1],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  const Text(
+                                    'Fine',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
 
-                      //Search Bar
-                      const Align(
-                        alignment: Alignment.topCenter,
-                        child: SearchBar(),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            //Exercises bar
-            Expanded(
-              child: ClipRRect(
-                borderRadius:
-                    const BorderRadius.vertical(top: Radius.circular(40)),
-                child: Container(
-                  color: Colors.grey[200],
-
-                  //Excercises and ..
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 35),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Exercises',
-                              style: TextStyle(
-                                color: Colors.grey[900],
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                              //Well
+                              Column(
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        showPopup(2);
+                                      });
+                                    },
+                                    child: EmojiFace(
+                                      emoji: emojis[2],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  const Text(
+                                    'Well',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Text(
-                              '..',
-                              style: TextStyle(
-                                color: Colors.grey[900],
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
+
+                              //Excellent
+                              Column(
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        showPopup(3);
+                                      });
+                                    },
+                                    child: EmojiFace(
+                                      emoji: emojis[3],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  const Text(
+                                    'Excellent',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: ListView(
-                          children: [
-                            const SizedBox(height: 15),
 
-                            //Speaking Skills
-                            SkillBox(
-                                icon: Icons.favorite,
-                                iconColor: Colors.amber.shade900,
-                                boxTitle: 'Speaking Skills',
-                                execercisoNum: 16),
-
-                            const SizedBox(height: 15),
-
-                            //Reading Skills
-                            SkillBox(
-                                icon: Icons.person,
-                                iconColor: Colors.blue.shade800,
-                                boxTitle: 'Reading Skills',
-                                execercisoNum: 8),
-
-                            //Listening Skills
-                            SkillBox(
-                                icon: Icons.record_voice_over,
-                                iconColor: Colors.pink.shade800,
-                                boxTitle: 'Listening Skills',
-                                execercisoNum: 12),
-                          ],
+                        //Como te sentes
+                        Align(
+                          heightFactor: 6.5,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text(
+                                'How do you feel?',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                '..',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  letterSpacing: 1,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      )
-                    ],
-                  ),
+
+                        //Search Bar
+                        const Align(
+                          alignment: Alignment.topCenter,
+                          child: SearchBar(),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
